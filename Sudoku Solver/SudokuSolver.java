@@ -21,9 +21,8 @@ public class SudokuSolver {
 
     // main function that calls the solver, and returns 0 in case sudoku is solvable/solved otherwise 1.
     int SudokuSolve() {
-        Integer[][] temp = this.input;
         if (SudokuSol()) {
-            print(temp);
+            print();
             return 0;
         } else
             return 1;
@@ -105,11 +104,11 @@ public class SudokuSolver {
             for(int j=0; j < 9; j++){
                 if(board[i][j] != 0 && !row.add(board[i][j]))
                     return false;
-                if(board[j][i] != 0 && !col.add(board[j][i]))
+                if(board[j][i] != 0 &&!col.add(board[j][i]))
                     return false;
                 int box_row = 3 * (i/3) + j/3;
                 int box_col = 3 * (i%3) + j%3;
-                if(board[box_row][box_col] != '.' && !Box.add(board[box_row][box_col]))
+                if(board[box_row][box_col] != 0 && !Box.add(board[box_row][box_col]))
                     return false;
             }
         }
@@ -137,11 +136,12 @@ public class SudokuSolver {
 
         System.out.println("Input Sudoku : ");
         print();
-        if(SudokuSolve() == 1) {
+        if(isInputSudokuValid(input)) {
             System.out.println("\nSolved : ");
-            System.out.println("This one has no solution.");
+            SudokuSolve();
             return;
         }
+        System.out.println("This one has no solution.");
     }
 
     void print(Integer[][] temp) {
