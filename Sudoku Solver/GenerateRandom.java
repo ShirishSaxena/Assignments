@@ -27,6 +27,7 @@ public class GenerateRandom {
         int invalid = 0, size = times;
         while(times-- > 0){
             SudokuSolver solver = new SudokuSolver(Randomize());
+            //solver.print();
             invalid += solver.SudokuSolve();
         }
         long end = System.currentTimeMillis();
