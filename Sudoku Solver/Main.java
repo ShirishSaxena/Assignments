@@ -55,8 +55,9 @@ public class Main {
         SudokuSolver sudo = new SudokuSolver(board);
         System.out.print("\nHardcoded sudoku is : ");
         sudo.print();
-        System.out.print("\nSolved : ");
-        sudo.SudokuSolve();
+        System.out.print("\nSolution : ");
+        if(sudo.SudokuSolve() == 1) System.out.print("\nThis one has no solution.");
+
     }
 
     static public void Choice2(){
