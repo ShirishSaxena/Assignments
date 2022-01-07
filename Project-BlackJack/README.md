@@ -9,7 +9,7 @@
 - You can replay/restart this game at the end.
 
 # Assumptions
-- Assuming that ACE value is 11 all the time, as such there can be total of 4 ACEs to be picked at random. So there's a tiny bit of chance to get 22 or 2 ACE pick at start.
+- Assuming that ACE value is 11 all the time, as such there can be total of 4 ACEs to be picked at random. So there's a minuscule chance to get 22 or 2 ACE pick at start.
 - Range is 2-11 so there are total of 44 cards to be picked at random and previously picked one can not be picked again.
 
 # Screenshot...
