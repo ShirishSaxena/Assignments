@@ -5,7 +5,7 @@
 # Features
 - No duplicates can be picked
 - Pick randomly from 4 suits (Clubs, Diamonds, Hearts, Spades), card range from 2 - 11 (inclusive).
-- Remembers yours and dealers pick and have an option to show all at the end of the program.
+- Remember yours and dealers pick and have an option to show all at the end of the program.
 - You can replay/restart this game at the end.
 
 # Assumptions
