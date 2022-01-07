@@ -26,7 +26,7 @@ public class CardHelper {
         this.cardName = cardName;
     }
 
-    public String toString(){
+    public String toString() {
         return "[" + ((this.n == 11) ? "ACE" : this.n) + "] of '" + this.cardName + "'";
     }
 

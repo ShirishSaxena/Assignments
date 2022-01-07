@@ -8,7 +8,7 @@ public class MainRunner {
         Scanner s = new Scanner(System.in);
         String replay = "y";
 
-        while(replay.equals("y") || replay.equals("yes")){
+        while (replay.equals("y") || replay.equals("yes")) {
             new BlackJack();
 
             System.out.print("\n\nPlay again? (y/n) : ");
