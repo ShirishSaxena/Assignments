@@ -10,7 +10,7 @@
 - Others features that weren't asked or I can't recall rightaway... :3
 
 # Assumptions
-- Assumed that input is string or a line which is parsed based on space, using custom regex that is way faster than String.split(" +") to skip extra spaces in middle of the line.
+- Assumed that input is string or a line which is parsed based on space, using custom method that is way faster than String.split(" +") regex to skip extra spaces in middle of the line.
 - If there is no input and user pressed enter, it is counted as 'Line break' and thus it also exits the program.
 - By my naive calculation space and time complexity is o(n). Even if it's wrong, it won't go anywhere near nLogn or god forbid n^2.
 
