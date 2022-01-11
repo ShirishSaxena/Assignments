@@ -8,6 +8,7 @@
 - It can add multiple entries at once.
 - Sort by every field.
 - Delete records by email.
+- Error handling (No wrong choices, error when trying to do changes without first loading file and much more.)
 
 
 # Assumptions
@@ -30,5 +31,16 @@
 - Delete record (Deletes record by email, because email is always unique)
 - Quit;Exits
 
-# Working gif...
-![Gif](http://213.32.15.53:6969/idea64_QXMwyMagUp.gif)
+# Screenshots and gifs
+## Welcome screen/Menu
+![welcomescreen](https://user-images.githubusercontent.com/6762915/149003894-4ebbaad8-234c-43e9-b80a-906030f9ed28.png)
+
+## Working gif
+![Working]()
+
+## Error handling (Not loading file first)
+![errorhandling](http://200.showy.life:6969/k1XImtW1bM.gif)
+
+
+
+
