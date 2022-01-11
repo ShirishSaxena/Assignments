@@ -3,15 +3,13 @@ package com.AddressBook.Services;
 import com.AddressBook.InputOutput.AddressFileReader;
 import com.AddressBook.InputOutput.AddressFileWriter;
 import com.AddressBook.Model.AddressBookEntry;
+import com.AddressBook.Model.AddressBookEntryComparator;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBookServices {
     private String fileName;
-    private List<List<String>> addressBook = new ArrayList<>();
 
     private Scanner takeIn = new Scanner(System.in);
 
@@ -24,15 +22,69 @@ public class AddressBookServices {
         addressFileReader.init(fileName);
     }
 
-    public void Sort(){
-        System.out.println("\nSorry, it's not implemented yet.");
-//        System.out.print("\nShow By :\n" +
-//                "1). LastName | 2). FirstName | 3). Email ? : ");
-//
-//        char choice = takeIn.nextLine().trim().charAt(0);
+    public void remove(){
+        System.out.print("Enter email to remove from record : ");
+        String email2Delete = takeIn.nextLine().trim();
+        List<AddressBookEntry> addList = addressFileReader.getAddressList();
+        int deleted = 0;
+        // Not an efficient loop, could've used LinkedHashMap for better searching and deletion
+        // But it works for now... o(N)
+        for(int i = 0; i < addList.size(); i++){
+            if(addList.get(i).getEmail().equalsIgnoreCase(email2Delete)){
+                deleted++;
+                addList.remove(i--);
+            }
+        }
+
+        if(deleted > 0){
+            addressFileReader.setAddressList(addList);
+            System.out.println("\nDeleted : " + deleted + " records.\n" +
+                               "Type 2 to save these changes.");
+        }
+
     }
-    public void tempFunc(){
-        System.out.println(addressFileReader.getDataInFile().size());
+
+    public void Sort(){
+        if(this.fileName == null) {
+            System.out.println("Error : no file defined for data");
+            return ;
+        }
+
+        System.out.print("\nSort By :\n" +
+                "1) FirstName | 2) LastName | 3) Email | 4) Phone No | 5) Address" +
+                "\nAnswer :  ");
+        char choice = takeIn.nextLine().trim().charAt(0);
+        List<AddressBookEntry> sortedBook = addressFileReader.getAddressList();
+        switch(choice){
+            case '1':
+                Collections.sort(sortedBook, new AddressBookEntryComparator().new FirstNameComparator());
+                addressFileReader.setAddressList(sortedBook);
+                System.out.println("\nSuccess : Sorted by 'firstName'. Type 5 to show and 2 to save sorted data to file");
+                break;
+            case '2':
+                Collections.sort(sortedBook, new AddressBookEntryComparator().new LastNameComparator());
+                addressFileReader.setAddressList(sortedBook);
+                System.out.println("\nSuccess : Sorted by 'lastName'. Type 5 to show and 2 to save sorted data to file");
+                break;
+
+            case '3':
+                Collections.sort(sortedBook, new AddressBookEntryComparator().new EmailComparator());
+                addressFileReader.setAddressList(sortedBook);
+                System.out.println("\nSuccess : Sorted by 'email'. Type 5 to show and 2 to save sorted data to file");
+                break;
+            case '4':
+                Collections.sort(sortedBook, new AddressBookEntryComparator().new PhoneComparator());
+                addressFileReader.setAddressList(sortedBook);
+                System.out.println("\nSuccess : Sorted by 'PhoneNo'. Type 5 to show and 2 to save sorted data to file");
+                break;
+            case '5':
+                Collections.sort(sortedBook, new AddressBookEntryComparator().new AddressComparator());
+                addressFileReader.setAddressList(sortedBook);
+                System.out.println("\nSuccess : Sorted by 'Address'. Type 5 to show and 2 to save sorted data to file");
+                break;
+            default:
+                System.out.println("Error : invalid choice, try again.");
+        }
     }
     public String openFile(){
         System.out.print("File name ? (file.ncx) : ");
@@ -57,9 +109,17 @@ public class AddressBookServices {
         addressFileReader.showAddressFile();
     }
 
+    public void updateRecords(){
+        if(addressFileWriter.updateRecords(addressFileReader.getAddressList()))
+            System.out.println("\nUpdated file : " + this.fileName);
+        else
+            System.out.println("\nError update file");
+    }
+
+
     public void add(){
         if(this.fileName == null) {
-            System.out.println("Error : Filename is null");
+            System.out.println("Error : no file defined for data");
             return ;
         }
 
@@ -93,11 +153,11 @@ public class AddressBookServices {
         } while(!currInput.equalsIgnoreCase("q"));
 
         addressFileWriter.Write2File(multiEntryList);
+        addressFileReader.refreshFileData();
     }
 
     private void addSingleEntry(){
-        String firstName, lastName, address, email;
-        Integer phoneNo;
+        String firstName, lastName, address, email, phoneNo;
 
         System.out.print("First Name : ");
         firstName = takeIn.nextLine().trim();
@@ -112,8 +172,10 @@ public class AddressBookServices {
         email = takeIn.nextLine().trim();
 
         System.out.print("phoneNo : ");
-        phoneNo = Integer.parseInt(takeIn.nextLine().trim());
+        phoneNo = takeIn.nextLine().trim();
 
         addressFileWriter.Write2File(firstName + " | " + lastName +  " | " + address +  " | " + email +  " | " + phoneNo);
+        addressFileReader.getDataInFile(this.fileName);
+        addressFileReader.refreshFileData();
     }
 }

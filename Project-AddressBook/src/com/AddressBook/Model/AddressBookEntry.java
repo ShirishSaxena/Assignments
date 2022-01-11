@@ -4,14 +4,13 @@ public class AddressBookEntry {
     private String firstName, lastName, address, email, phoneNo;
 
     public AddressBookEntry(String line) {
-
-        String[] l = line.split("\\|");
+        String[] l = line.split("\\| ");
         if(l.length == 5){
-            this.firstName = l[0];
-            this.lastName = l[1];
-            this.address = l[2];
-            this.email = l[3];
-            this.phoneNo = l[4];
+            this.firstName = l[0].trim();
+            this.lastName = l[1].trim();
+            this.address = l[2].trim();
+            this.email = l[3].trim();
+            this.phoneNo = l[4].trim();
         }
     }
 

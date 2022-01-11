@@ -36,13 +36,19 @@ public class AppStarter {
                 if(newFileName != null) this.fileName = newFileName;
                 break;
             case '2':
-                addressBook.add();
+                addressBook.updateRecords();
                 break;
             case '3':
-                addressBook.Sort();
+                addressBook.add();
                 break;
             case '4':
+                addressBook.Sort();
+                break;
+            case '5':
                 addressBook.readFile();
+                break;
+            case '6':
+                addressBook.remove();
                 break;
             default:
                 System.out.println("Bye, now.");
@@ -53,14 +59,14 @@ public class AppStarter {
     }
 
 
-
-
     void showMenu(String opened){
         System.out.print("\n########################## \n" +
                             "1) Load from file " + ((opened != null) ? "(" + opened + ")": "") + "\n" +
-                            "2) Add entry/entries \n" +
-                            "3) Sort the address book \n" +
-                            "4) Show all in address book \n" +
+                            "2) Save to file\n" +
+                            "3) Add entry/entries \n" +
+                            "4) Sort the address book \n" +
+                            "5) Show all in address book \n" +
+                            "6) Delete record\n" +
                             "x) Quit \n" +
                             "########################## \n" +
                             "\nAnswer : "

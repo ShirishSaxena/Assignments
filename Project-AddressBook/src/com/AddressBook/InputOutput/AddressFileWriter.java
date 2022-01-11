@@ -1,5 +1,7 @@
 package com.AddressBook.InputOutput;
 
+import com.AddressBook.Model.AddressBookEntry;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +15,22 @@ public class AddressFileWriter {
     Scanner takeIn = new Scanner(System.in);
     public void init(String fileName){
         this.fileName = fileName;
+    }
+
+    public boolean updateRecords(List<AddressBookEntry> updatedList){
+        try {
+            FileWriter fileWriter = new FileWriter(fileName, false);
+            for(AddressBookEntry record : updatedList)
+                fileWriter.write("\n" + record.toString());
+
+            fileWriter.close();
+        }
+        catch (IOException e) {
+            System.err.println("IOException : " + e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     public void Write2File(String line){
