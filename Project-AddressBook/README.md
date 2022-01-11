@@ -35,8 +35,8 @@
 ## Welcome screen/Menu
 ![welcomescreen](https://user-images.githubusercontent.com/6762915/149003894-4ebbaad8-234c-43e9-b80a-906030f9ed28.png)
 
-## Working gif
-![Working]()
+## Working gif (Just showing the output of all commands to make gif shorter otherwise it was over 3 min long)
+![Working](http://200.showy.life:6969/3xrUKqXy73.gif)
 
 ## Error handling (Not loading file first)
 ![errorhandling](http://200.showy.life:6969/k1XImtW1bM.gif)
