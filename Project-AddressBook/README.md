@@ -11,7 +11,7 @@
 - It would have been easier to use sql, but a basis understanding of how I/O buffer works, I choose to use text files as database.
 - For sorting, I used custom comparator, comparators time compelxity is (nLogn) and it's easier to implement.
 
-# To add
+# Further improvement
 - Custom sorting
 - Taking entries from one file and adding it to another one.
 - Using serializable and deserializable to convert object in byte streams and so forth.
