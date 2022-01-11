@@ -9,6 +9,7 @@
 - Sort by every field.
 - Delete records by email.
 
+
 # Assumptions
 - It would have been easier to use sql, but a basis understanding of how I/O buffer works is neccesary, and thus I choose to use files as database.
 - For sorting, I used custom comparator, comparators time compelxity is (nLogn) and it's easier to implement.
@@ -19,6 +20,15 @@
 - Search for specific entries (String.contains, String.endsWith, String.startsWith etc)
 - Browse records but with pageable so they don't clutter the cmd.
 
+
+# Supports
+- Load from file (create new file if it doesn't exists)
+- Save to file (save any changes made during runtime, like sorting, deletion etc)
+- Add entry/entries (add single entry or multiple entry directly to file)
+- Sort records (you can sort it by every field)
+- Show all records (shows all records in that file and also any pending changes that needs to be saved)
+- Delete record (Deletes record by email, because email is always unique)
+- Quit;Exits
 
 # Working gif...
 ![Gif](http://213.32.15.53:6969/idea64_QXMwyMagUp.gif)
