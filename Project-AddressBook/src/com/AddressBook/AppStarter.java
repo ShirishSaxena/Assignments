@@ -50,9 +50,13 @@ public class AppStarter {
             case '6':
                 addressBook.remove();
                 break;
-            default:
+            case 'x':
+            case 'q':
+            case '7':
                 System.out.println("Bye, now.");
                 System.exit(0);
+            default:
+                System.out.println("\nError : Invalid input, try again.");
         }
         init();
 

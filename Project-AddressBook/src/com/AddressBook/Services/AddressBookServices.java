@@ -23,6 +23,10 @@ public class AddressBookServices {
     }
 
     public void remove(){
+        if(this.fileName == null) {
+            System.out.println("\nError : no file defined to remove data from");
+            return ;
+        }
         System.out.print("Enter email to remove from record : ");
         String email2Delete = takeIn.nextLine().trim();
         List<AddressBookEntry> addList = addressFileReader.getAddressList();
@@ -46,7 +50,7 @@ public class AddressBookServices {
 
     public void Sort(){
         if(this.fileName == null) {
-            System.out.println("Error : no file defined for data");
+            System.out.println("\nError : no file defined to sort records from");
             return ;
         }
 
@@ -106,10 +110,18 @@ public class AddressBookServices {
     }
 
     public void readFile(){
+        if(this.fileName == null) {
+            System.out.println("\nError : no file defined to show records");
+            return ;
+        }
         addressFileReader.showAddressFile();
     }
 
     public void updateRecords(){
+        if(this.fileName == null) {
+            System.out.println("\nError : no file defined to update records on");
+            return ;
+        }
         if(addressFileWriter.updateRecords(addressFileReader.getAddressList()))
             System.out.println("\nUpdated file : " + this.fileName);
         else
@@ -119,7 +131,7 @@ public class AddressBookServices {
 
     public void add(){
         if(this.fileName == null) {
-            System.out.println("Error : no file defined for data");
+            System.out.println("\nError : no file defined to add records");
             return ;
         }
 
