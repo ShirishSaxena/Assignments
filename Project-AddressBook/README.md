@@ -10,7 +10,7 @@
 - Delete records by email.
 - Error handling (No wrong choices, error when trying to do changes without first loading file and much more.)
 
-# Supports
+# Operations
 - Load from file (create new file if it doesn't exists)
 - Save to file (save any changes made during runtime, like sorting, deletion etc)
 - Add entry/entries (add single entry or multiple entry directly to file)
