@@ -50,9 +50,14 @@ public class AppStarter {
             case '6':
                 addressBook.remove();
                 break;
+            case '7':
+                addressBook.search();
+                break;
+            case '8':
+                addressBook.edit();
+                break;
             case 'x':
             case 'q':
-            case '7':
                 System.out.println("Bye, now.");
                 System.exit(0);
             default:
@@ -71,6 +76,8 @@ public class AppStarter {
                             "4) Sort the address book \n" +
                             "5) Show all in address book \n" +
                             "6) Delete record\n" +
+                            "7) Search records\n" +
+                            "8) Edit records\n" +
                             "x) Quit \n" +
                             "########################## \n" +
                             "\nAnswer : "

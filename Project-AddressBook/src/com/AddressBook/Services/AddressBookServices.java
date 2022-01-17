@@ -117,6 +117,71 @@ public class AddressBookServices {
         addressFileReader.showAddressFile();
     }
 
+    public void search(){
+        if(this.fileName == null) {
+            System.out.println("\nError : no file defined to search records");
+            return ;
+        }
+        System.out.print("\nSearch from 1) email 2) PhoneNo 3) FirstName 4) LastName 5) Address\nAnswer : ");
+        char getIn = takeIn.nextLine().trim().charAt(0);
+
+        if(Character.isLetter(getIn)) {
+            System.out.println("\nchar encountered -> going back to the main menu.");
+            return;
+        }
+        else if(getIn > '5' || getIn < '1') {
+            System.out.println("\nError : ans not in range of 1 - 5");
+            search();
+        }
+
+        System.out.print("\nSearch by? 1) Contains 2) StartsWith 3) EndsWith 4) Full Match\nAnswer : ");
+        char getSearchBy = takeIn.nextLine().trim().charAt(0);
+
+        if(Character.isLetter(getSearchBy)) {
+            System.out.println("\nchar encountered -> going back to the main menu.");
+            return;
+        }
+        else if (getSearchBy > '4' || getSearchBy < '1') {
+            System.out.println("\nError : ans not in range of 1 - 4");
+            search();
+        }
+
+        System.out.print("\nEnter a string to search : ");
+        String searchStr = takeIn.nextLine().trim();
+        List<AddressBookEntry> entries = searchCondition(getIn - '0', getSearchBy -'0', searchStr);
+
+        System.out.println("\n||****  Search result  ****||");
+        addressFileReader.showAddressFile(entries);
+        return;
+    }
+
+    private List<AddressBookEntry> searchCondition(int searchFrom, int searchBy, String searchStr){
+        List<AddressBookEntry> entries = null;
+        AddressBookSearchServices addressBookSearchServices = new AddressBookSearchServices();
+        // get current addressList
+        List<AddressBookEntry> currList = addressFileReader.getAddressList();
+
+        // Search from 1) email 2) PhoneNo 3) FirstName 4) LastName 5) Address
+        switch(searchFrom){
+            case 1:
+                entries = addressBookSearchServices.getResultByEmail(currList, searchBy, searchStr);
+                break;
+            case 2:
+                entries = addressBookSearchServices.getResultByPhone(currList, searchBy, searchStr);
+                break;
+            case 3:
+                entries = addressBookSearchServices.getResultByFirstName(currList, searchBy, searchStr);
+                break;
+            case 4:
+                entries = addressBookSearchServices.getResultByLastName(currList, searchBy, searchStr);
+                break;
+            case 5:
+                entries = addressBookSearchServices.getResultByAddress(currList, searchBy, searchStr);
+                break;
+        }
+        return entries;
+    }
+
     public void updateRecords(){
         if(this.fileName == null) {
             System.out.println("\nError : no file defined to update records on");
@@ -125,7 +190,74 @@ public class AddressBookServices {
         if(addressFileWriter.updateRecords(addressFileReader.getAddressList()))
             System.out.println("\nUpdated file : " + this.fileName);
         else
-            System.out.println("\nError update file");
+            System.out.println("\nError updating file");
+    }
+
+    public void edit(){
+        if(this.fileName == null) {
+            System.out.println("\nError : no file defined to edit records");
+            return ;
+        }
+
+        System.out.println("\nSelect any index below to edit that record : ");
+        int idx = 0;
+        List<AddressBookEntry> getEntries = addressFileReader.getAddressList();
+        for(AddressBookEntry entry : getEntries){
+            System.out.println(idx++ + " -> " + entry.toString());
+        }
+        System.out.print("\nAnswer : ");
+        char answer = takeIn.nextLine().trim().charAt(0);
+
+        while(!Character.isLetter(answer) && (answer < '0' || answer > (idx + '0'))){
+            System.out.print("\nAnswer (Not in range, q to quit) : ");
+            answer = takeIn.nextLine().trim().charAt(0);
+        }
+
+        if(Character.isLetter(answer)){
+            System.out.println("\nError : character encountered going back to main menu");
+            return;
+        }
+
+        System.out.println("What would you like to edit in record " + idx + " ?");
+        System.out.print("1) FirstName 2)LastName 3) Address 4) Email 5) PhoneNo 6) All ? : ");
+        char editans = takeIn.nextLine().trim().charAt(0);
+
+        String changeWith;
+        switch(editans){
+            case '1':
+                System.out.print("\nEnter to replace with : ");
+                changeWith = takeIn.nextLine().trim();
+                getEntries.get(answer - '0').setFirstName(changeWith);
+                break;
+            case '2':
+                System.out.print("\nEnter to replace with : ");
+                changeWith = takeIn.nextLine().trim();
+                getEntries.get(answer - '0').setLastName(changeWith);
+                break;
+            case '3':
+                System.out.print("\nEnter to replace with : ");
+                changeWith = takeIn.nextLine().trim();
+                getEntries.get(answer - '0').setAddress(changeWith);
+                break;
+            case '4':
+                System.out.print("\nEnter to replace with : ");
+                changeWith = takeIn.nextLine().trim();
+                getEntries.get(answer - '0').setEmail(changeWith);
+                break;
+            case '5':
+                System.out.print("\nEnter to replace with : ");
+                changeWith = takeIn.nextLine().trim();
+                getEntries.get(answer - '0').setPhoneNo(changeWith);
+                break;
+            case '6':
+                System.out.println("Pattern to edit all elements in record is\n" +
+                                    "FirstName | LastName | address | email | phoneNo :-");
+                changeWith = takeIn.nextLine().trim();
+
+                if(getEntries.get(answer - '0').setAll(changeWith))
+                    System.out.println("\nError : wrong pattern entered.");
+                break;
+        }
     }
 
 

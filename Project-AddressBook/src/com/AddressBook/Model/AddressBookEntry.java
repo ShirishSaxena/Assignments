@@ -14,6 +14,21 @@ public class AddressBookEntry {
         }
     }
 
+    public boolean setAll(String line){
+        String[] l = line.split("\\| ");
+        if(l.length == 5){
+            this.firstName = l[0].trim();
+            this.lastName = l[1].trim();
+            this.address = l[2].trim();
+            this.email = l[3].trim();
+            this.phoneNo = l[4].trim();
+
+            return true;
+        }
+
+        return false;
+    }
+
     public String getFirstName() {
         return firstName;
     }

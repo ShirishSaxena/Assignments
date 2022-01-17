@@ -87,8 +87,14 @@ public class AddressFileReader {
     public void showAddressFile(){
         System.out.println("\nRecords in " + fileName + " :-\n");
         if(addressList != null && addressList.size() > 0){
-            int index = 0;
             for(AddressBookEntry add : addressList)
+                System.out.println(add.toString());
+        }
+    }
+
+    public void showAddressFile(List<AddressBookEntry> currList){
+        if(currList != null && currList.size() > 0){
+            for(AddressBookEntry add : currList)
                 System.out.println(add.toString());
         }
     }
