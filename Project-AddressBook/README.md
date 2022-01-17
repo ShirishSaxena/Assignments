@@ -2,6 +2,15 @@
 - Java 8+
 - IntelliJ (optional)
 
+# Updates
+```
+  (17-Jan-2021)
+      - Added option for Search
+        (By Every field with options such as 'contains', 'startsWith', 'endsWith', 'fullMatch')
+      - Added edit records option
+        (Shows you current addrees List and options such as edit each field seperatory or 'editAll')
+```
+
 # Features
 - Very basic I/O address book that checks if file exists or not if not create that file to be used as database.
 - It only takes specific extension file and will keep asking until fileName ends with that extension (default - '.ncx')
@@ -26,10 +35,9 @@
 # Further improvement
 - Taking entries from one file and adding it to another one.
 - Using serializable and deserializable to convert object in byte streams and so forth.
-- Search for specific entries (String.contains, String.endsWith, String.startsWith etc)
 - Browse records but with pageable so they don't clutter the cmd for high record file.
 
-# Screenshots and gifs
+# Screenshots and gifs (14-Jan-2021)
 ## Welcome screen/Menu
 ![welcomescreen](https://user-images.githubusercontent.com/6762915/149003894-4ebbaad8-234c-43e9-b80a-906030f9ed28.png)
 
