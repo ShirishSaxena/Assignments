@@ -1,5 +1,7 @@
 package com.calc;
 
+import com.calc.CalcHelper.CalcInfix;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,6 +9,7 @@ import java.util.Scanner;
 public class InputHelper {
 
     Calculator calculator = new Calculator();
+    CalcInfix calcInfix = new CalcInfix();
 
     Scanner input = new Scanner(System.in);
     String inputStr;
@@ -53,6 +56,10 @@ public class InputHelper {
     void doCalculations(List<String> temp){ //
         System.out.println(calculator.Calculate(temp));
     }
+    void doCalculations(){ //
+        System.out.println(calculator.Calculate(this.inputStr));
+    }
+
 
 
     // Splits input in parts

@@ -6,6 +6,7 @@ package com.calc.CalcHelper;
 */
 public class Calc1Split {
     String prevResult;
+    CalcInfix calcInfix = new CalcInfix();
 
     public Calc1Split(String prevResult) {
         this.prevResult = prevResult;
@@ -23,7 +24,7 @@ public class Calc1Split {
             try {
                 result = RoundDouble(Double.parseDouble(str));
             } catch (NumberFormatException e2) {
-                return "Error : No command found by name '" + str + "'";
+                return String.valueOf(calcInfix.calc(str));
             }
         }
         return result;

@@ -14,6 +14,10 @@ public class Calculator {
     private Map<List<String>, String> saveInputs= new LinkedHashMap<>();
 
     // Main method that does calculation depending on the split size
+    String Calculate(String line){
+        return line;
+    }
+
     String Calculate(List<String> parsedIn){
         int size = parsedIn.size();
         String result;
@@ -42,7 +46,7 @@ public class Calculator {
     }
 
 
-    // Method that checks if new prev is integer or double, if not than doesn't change it
+    // Method that checks if new prev is integer or double, if not than don't change it
     void changeLastResult(String newResult){
         try{
             Integer.parseInt(newResult);
